@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello World - React</title>
+  <!-- React & ReactDOM CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #0f172a; color: #f8fafc; }
+    .card { background: #1e293b; padding: 2.5rem 3.5rem; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); text-align: center; border: 1px solid #334155; }
+    h1 { color: #61dafb; margin-bottom: 0.5rem; }
+    p { color: #94a3b8; font-size: 1.1rem; }
+    .badge { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 9999px; background: #0e7490; color: #cffafe; font-size: 0.875rem; font-weight: 600; margin-top: 1rem; }
+    .react-logo { width: 60px; height: 60px; animation: spin infinite 20s linear; margin-bottom: 1rem; }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script>
+    const e = React.createElement;
+    function App() {
+      return e('div', { className: 'card' },
+        e('svg', { className: 'react-logo', viewBox: '-11.5 -10.23174 23 20.46348', fill: 'none', xmlns: 'http://www.w3.org/2000/svg' },
+          e('circle', { cx: '0', cy: '0', r: '2.05', fill: '#61dafb' }),
+          e('g', { stroke: '#61dafb', strokeWidth: '1', fill: 'none' },
+            e('ellipse', { rx: '11', ry: '4.2' }),
+            e('ellipse', { rx: '11', ry: '4.2', transform: 'rotate(60)' }),
+            e('ellipse', { rx: '11', ry: '4.2', transform: 'rotate(120)' })
+          )
+        ),
+        e('h1', null, 'Hello World from React!'),
+        e('p', null, 'Containerized using Docker & running on port 80 (served via Nginx)'),
+        e('span', { className: 'badge' }, 'DevOps Assignment 05')
+      );
+    }
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(e(App));
+  </script>
+</body>
+</html>
