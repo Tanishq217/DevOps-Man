@@ -3,7 +3,7 @@
 **Course:** DevOps  
 **Topic:** Multi-Stage Builds & Multi-Application Docker Deployment  
 **Name:** Tanishq  
-**Enrollment Number:** [Your Enrollment Number]  
+**Enrollment Number:** 24bcs10303  
 **Repository:** https://github.com/Tanishq217/DevOps-Man  
 **Environment:** macOS (Apple Silicon) / Docker
 
@@ -186,7 +186,7 @@ Visiting `http://localhost:8080` in the browser displays the rendered page:
 ## Task 2: Documentation & Container Verification
 
 - **Student Name:** Tanishq
-- **Enrollment Number:** [Your Enrollment Number]
+- **Enrollment Number:** 24bcs10303
 
 ### 1. Verification of Running Container on Port 8080 (`docker ps`)
 To confirm that the application is running and properly bound to port 8080 on the host:
