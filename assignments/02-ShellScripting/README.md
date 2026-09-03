@@ -168,7 +168,7 @@ echo "   $CURRENT_DATE"
 
 **Screenshot:**
 
-![Date output](02-date-output.png)
+![Date, Hostname & User output](02-date-hostname-user.png)
 
 ---
 
@@ -193,7 +193,7 @@ echo "   $HOST_NAME"
 
 **Screenshot:**
 
-![Hostname output](03-hostname-output.png)
+![Date, Hostname & User output](02-date-hostname-user.png)
 
 ---
 
@@ -218,7 +218,7 @@ echo "   $USER_NAME"
 
 **Screenshot:**
 
-![Username output](04-username-output.png)
+![Date, Hostname & User output](02-date-hostname-user.png)
 
 ---
 
@@ -248,7 +248,7 @@ devfs            221Ki   221Ki     0Bi   100%     764     0  100%   /dev
 
 **Screenshot:**
 
-![Disk usage output](05-disk-usage.png)
+![Disk usage output](03-disk-usage.png)
 
 ---
 
@@ -282,7 +282,7 @@ ps -ax | head -20
 
 **Screenshot:**
 
-![Running processes](06-ps-output.png)
+![Running processes](04-ps-output.png)
 
 ---
 
@@ -305,7 +305,7 @@ read -p "📁 Enter a name for the project directory to create: " PROJECT_NAME
 
 **Screenshot:**
 
-![User input with read -p](07-user-input.png)
+![User input with read -p](05-user-input.png)
 
 ---
 
@@ -330,7 +330,7 @@ echo "✅ Directory created: $DIR_PATH"
 
 **Screenshot:**
 
-![mkdir output](08-mkdir-output.png)
+![mkdir, touch and redirection output](06-mkdir-touch-redirect.png)
 
 ---
 
@@ -354,7 +354,7 @@ echo "✅ File created: $REPORT_FILE"
 
 **Screenshot:**
 
-![touch output](09-touch-output.png)
+![mkdir, touch and redirection output](06-mkdir-touch-redirect.png)
 
 ---
 
@@ -412,7 +412,7 @@ Filesystem        Size    Used   Avail Capacity iused ifree %iused  Mounted on
 
 **Screenshot:**
 
-![Output redirection and file contents](10-output-redirection.png)
+![Output redirection and file contents](07-report-file.png)
 
 ---
 
@@ -468,7 +468,7 @@ devfs            221Ki   221Ki     0Bi   100%     764     0  100%   /dev
 
 **Screenshot:**
 
-![Full script run](11-full-run.png)
+![Full script run](06-mkdir-touch-redirect.png)
 
 ---
 
