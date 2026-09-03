@@ -1,0 +1,11 @@
+{
+  "name": "nodejs-deployment",
+  "version": "1.0.0",
+  "description": "Node.js Application Deployment for Assignment 06",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Tanishq",
+  "license": "ISC"
+}
