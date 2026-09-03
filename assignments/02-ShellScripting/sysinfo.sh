@@ -1,79 +1,36 @@
 #!/bin/bash
 
-# ============================================================
-# Script Name: sysinfo.sh
-# Description: System Information Script - DevOps Assignment 02
-# Author: Tanishq
-# Date: $(date +%Y-%m-%d)
-# ============================================================
-
-echo "=============================================="
-echo "       SYSTEM INFORMATION REPORT"
-echo "=============================================="
-echo ""
-
-# ── 1. Print the Current Date ───────────────────
+# 1. print current date
 CURRENT_DATE=$(date)
-echo "📅 Current Date & Time:"
-echo "   $CURRENT_DATE"
-echo ""
+echo "Date: $CURRENT_DATE"
 
-# ── 2. Print the Hostname ───────────────────────
+# 2. print hostname
 HOST_NAME=$(hostname)
-echo "🖥️  Hostname:"
-echo "   $HOST_NAME"
-echo ""
+echo "Hostname: $HOST_NAME"
 
-# ── 3. Print the Username ───────────────────────
+# 3. print username
 USER_NAME=$(whoami)
-echo "👤 Logged-in User:"
-echo "   $USER_NAME"
-echo ""
+echo "User: $USER_NAME"
 
-# ── 4. Print Disk Usage ─────────────────────────
-echo "💾 Disk Usage:"
+# 4. print disk usage
+echo "Disk Usage:"
 df -h
-echo ""
 
-# ── 5. Print Running Processes ──────────────────
-echo "⚙️  Running Processes (snapshot):"
+# 5. print running processes
+echo "Running Processes:"
 ps -ax | head -20
-echo ""
 
-# ── 6. Take User Input ──────────────────────────
-read -p "📁 Enter a name for the project directory to create: " PROJECT_NAME
-echo ""
+# 6. take user input
+read -p "Enter directory name: " PROJECT_NAME
 
-# ── 7. Create a Directory ───────────────────────
-DIR_PATH="./$PROJECT_NAME"
-mkdir -p "$DIR_PATH"
-echo "✅ Directory created: $DIR_PATH"
-echo ""
+# 7. create directory
+mkdir -p $PROJECT_NAME
+echo "Directory created: $PROJECT_NAME"
 
-# ── 8. Create a File ────────────────────────────
-REPORT_FILE="$DIR_PATH/system_report.txt"
-touch "$REPORT_FILE"
-echo "✅ File created: $REPORT_FILE"
-echo ""
+# 8. create a file inside it
+touch $PROJECT_NAME/system_report.txt
+echo "File created: $PROJECT_NAME/system_report.txt"
 
-# ── 9. Store Running Processes in the File ──────
-echo "📝 Saving running processes to $REPORT_FILE ..."
-{
-  echo "=============================================="
-  echo "  SYSTEM REPORT — Generated on: $CURRENT_DATE"
-  echo "  Hostname : $HOST_NAME"
-  echo "  User     : $USER_NAME"
-  echo "=============================================="
-  echo ""
-  echo "--- DISK USAGE ---"
-  df -h
-  echo ""
-  echo "--- RUNNING PROCESSES ---"
-  ps -ax
-} > "$REPORT_FILE"
-
-echo "✅ Process info saved to: $REPORT_FILE"
-echo ""
-echo "=============================================="
-echo "        REPORT COMPLETE — All Done! 🎉"
-echo "=============================================="
+# 9. store process info into the file using output redirection
+ps -ax > $PROJECT_NAME/system_report.txt
+echo "Process info saved to system_report.txt"
