@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: lifecycle-termination
+  labels:
+    app: lifecycle-test
+spec:
+  terminationGracePeriodSeconds: 20
+  containers:
+    - name: graceful-app
+      image: busybox:1.36
+      command:
+        - sh
+        - -c
+        - |
+          trap 'echo "SIGTERM received! Flushing buffers and draining connections..."; sleep 10; echo "Cleanup complete. Exiting cleanly."; exit 0' TERM
+          echo "Application running and accepting requests..."
+          while true; do sleep 2; done
