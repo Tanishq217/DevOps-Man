@@ -1,0 +1,17 @@
+# Intentionally Misconfigured Service for Troubleshooting Drill
+# Problem: Selector 'app: wrong-backend-name' does not match any existing Pods!
+# Symptom: 'kubectl get endpoints broken-backend-service' shows '<none>' and connections fail.
+apiVersion: v1
+kind: Service
+metadata:
+  name: broken-backend-service
+  labels:
+    app: broken-backend
+spec:
+  type: ClusterIP
+  selector:
+    app: wrong-backend-name    # Mismatch! Pod label is 'app: web-clusterip'
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
