@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap 
+
+metadata: 
+  name: nginx-yaml-configmap
+
+data: 
+  APP_NAME: "nginx"
+  ENVIRONMENT: "development" 
+  APP_PORT: "80" 
+
+  

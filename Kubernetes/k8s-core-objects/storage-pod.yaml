@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+
+metadata:
+  name: storage-test-pod
+
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+
+      volumeMounts:
+        - name: my-storage
+          mountPath: /data
+
+  volumes:
+    - name: my-storage
+      emptyDir: {}
