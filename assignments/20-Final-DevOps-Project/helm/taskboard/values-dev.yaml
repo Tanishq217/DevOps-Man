@@ -1,0 +1,28 @@
+# Development environment values override
+namespace: taskboard-dev
+
+backend:
+  replicaCount: 1
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      cpu: 250m
+      memory: 256Mi
+
+frontend:
+  replicaCount: 1
+  resources:
+    requests:
+      cpu: 25m
+      memory: 32Mi
+    limits:
+      cpu: 100m
+      memory: 64Mi
+
+hpa:
+  enabled: false
+
+ingress:
+  host: dev.taskboard.local

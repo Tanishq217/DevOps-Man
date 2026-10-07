@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: taskboard-postgres
+  namespace: taskboard
+  labels:
+    app: taskboard-postgres
+spec:
+  type: ClusterIP
+  ports:
+    - port: 5432
+      targetPort: 5432
+      name: postgres
+  selector:
+    app: taskboard-postgres
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: taskboard-backend
+  namespace: taskboard
+  labels:
+    app: taskboard-backend
+    app.kubernetes.io/name: backend
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8000
+      targetPort: 8000
+      name: http
+  selector:
+    app: taskboard-backend
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: taskboard-frontend
+  namespace: taskboard
+  labels:
+    app: taskboard-frontend
+    app.kubernetes.io/name: frontend
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 80
+      name: http
+  selector:
+    app: taskboard-frontend

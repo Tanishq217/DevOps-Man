@@ -1,0 +1,12 @@
+# Bandit SAST Configuration
+skips: ['B101', 'B601']
+exclude_dirs: ['tests', 'alembic']
+
+profiles:
+  default:
+    include:
+      - any_other_function_with_shell_equals_true
+      - hardcoded_password_string
+      - hardcoded_sql_expressions
+      - jinja2_autoescape_false
+      - try_except_pass

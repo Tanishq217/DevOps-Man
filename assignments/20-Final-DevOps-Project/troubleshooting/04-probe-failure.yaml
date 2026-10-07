@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taskboard-broken-probe
+  namespace: taskboard
+  labels:
+    app: taskboard-broken-probe
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: taskboard-broken-probe
+  template:
+    metadata:
+      labels:
+        app: taskboard-broken-probe
+    spec:
+      containers:
+        - name: backend
+          image: ghcr.io/tanishq217/taskboard-backend:latest
+          ports:
+            - containerPort: 8000
+          # Probe points to invalid path causing HTTP 404 and pod readiness failure
+          readinessProbe:
+            httpGet:
+              path: /api/invalid-non-existent-probe-endpoint
+              port: 8000
+            initialDelaySeconds: 2
+            periodSeconds: 3
+            failureThreshold: 2

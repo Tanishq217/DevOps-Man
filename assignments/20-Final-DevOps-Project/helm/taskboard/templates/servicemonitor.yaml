@@ -1,0 +1,17 @@
+{{- if .Values.monitoring.serviceMonitor.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "taskboard.fullname" . }}-monitor
+  labels:
+    {{- include "taskboard.labels" . | nindent 4 }}
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "taskboard.name" . }}-backend
+  endpoints:
+    - port: http
+      path: {{ .Values.monitoring.serviceMonitor.path }}
+      interval: {{ .Values.monitoring.serviceMonitor.interval }}
+{{- end }}

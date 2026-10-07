@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: taskboard-config
+  namespace: taskboard
+  labels:
+    app: taskboard
+data:
+  APP_NAME: "TaskBoard Cloud API"
+  ENVIRONMENT: "production"
+  PORT: "8000"
+  DB_HOST: "taskboard-postgres"
+  DB_PORT: "5432"
+  DB_NAME: "taskboard"

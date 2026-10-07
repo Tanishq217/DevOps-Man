@@ -1,0 +1,17 @@
+apiVersion: v2
+name: taskboard
+description: TaskBoard enterprise Cloud & DevSecOps Capstone Helm Chart
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+keywords:
+  - devops
+  - devsecops
+  - kubernetes
+  - fastapi
+  - react
+maintainers:
+  - name: Tanishq Singh
+    email: tanishq.devops@example.com
+icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/kubernetes/icon/color/kubernetes-icon-color.svg
+

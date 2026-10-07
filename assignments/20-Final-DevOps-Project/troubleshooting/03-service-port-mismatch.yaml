@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: taskboard-broken-service
+  namespace: taskboard
+  labels:
+    app: taskboard-backend
+spec:
+  type: ClusterIP
+  ports:
+    # Service port 8000 routes to targetPort 9090 which has no listening process inside the pod
+    - port: 8000
+      targetPort: 9090
+      name: http
+  # Selector targets an incorrect label that matches 0 pods in the cluster
+  selector:
+    app: non-existent-backend-label

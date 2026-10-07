@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: taskboard
+
+resources:
+  - ../kubernetes/namespace.yaml
+  - ../kubernetes/configmap.yaml
+  - ../kubernetes/secret.yaml
+  - ../kubernetes/pvc.yaml
+  - ../kubernetes/deployment.yaml
+  - ../kubernetes/service.yaml
+  - ../kubernetes/ingress.yaml
+  - ../kubernetes/hpa.yaml
+
+commonLabels:
+  managed-by: gitops-kustomize

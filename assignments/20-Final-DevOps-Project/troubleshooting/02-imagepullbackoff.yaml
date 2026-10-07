@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taskboard-broken-image
+  namespace: taskboard
+  labels:
+    app: taskboard-broken-image
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: taskboard-broken-image
+  template:
+    metadata:
+      labels:
+        app: taskboard-broken-image
+    spec:
+      containers:
+        - name: backend
+          # Non-existent container registry tag triggers ImagePullBackOff
+          image: ghcr.io/tanishq217/taskboard-backend:v999.0-nonexistent-tag
+          imagePullPolicy: Always
