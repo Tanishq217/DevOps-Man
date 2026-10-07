@@ -1,0 +1,108 @@
+name: Final CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Test Application
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Display Python version
+        run: python --version
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Pytest test suite
+        run: |
+          pytest -v
+
+  security-check:
+    name: Security & Secret Scan
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Check for committed sensitive files
+        run: |
+          echo "Scanning repository for sensitive credential files (.env, *.pem, *.key)..."
+          if find . -type f \( -name ".env" -o -name "*.pem" -o -name "*.key" \) | grep -q .; then
+            echo "Security Alert: Sensitive file found in repository!"
+            exit 1
+          else
+            echo "Security Check Passed: No sensitive files exposed."
+          fi
+
+      - name: Verify Secret configuration
+        env:
+          DEMO_SECRET: ${{ secrets.DEMO_SECRET }}
+        run: |
+          if [ -n "$DEMO_SECRET" ]; then
+            echo "Secret is securely configured and accessible in workflow."
+          else
+            echo "Secret is not configured (optional demonstration fallback)."
+          fi
+
+  build:
+    name: Build & Package Artifact
+    needs: [test, security-check]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build application bundle
+        run: |
+          chmod +x build.sh
+          ./build.sh
+
+      - name: Verify build artifact
+        run: |
+          echo "Inspecting generated build output:"
+          cat build/build-info.txt
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: calculator-build
+          path: build/
+
+  docker-package:
+    name: CD Packaging (Docker Image)
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker Container
+        run: |
+          docker build -t calculator-app:${{ github.sha }} .
+          docker image ls calculator-app:${{ github.sha }}
