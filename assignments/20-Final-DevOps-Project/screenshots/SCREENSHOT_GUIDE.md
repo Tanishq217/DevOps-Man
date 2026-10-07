@@ -1,18 +1,18 @@
-# Capstone Screenshots Submission Guide
+# Capstone Screenshots Verification Guide
 
-Save all captured screenshots directly inside this `screenshots/` directory with the following exact filenames:
+This directory contains the verified screenshots for the **Session 20: Final DevOps Project & Troubleshooting** capstone:
 
-| Screenshot File | Description | How to Capture / Command |
+| Screenshot File | Description | Verification Details |
 |---|---|---|
-| `01-local-app-ui.png` | TaskBoard SaaS UI Dashboard | Open `http://localhost:3000` in browser showing tasks and KPI cards |
-| `02-docker-compose-up.png` | Docker Compose Stack Running | `docker compose up -d && docker compose ps` |
-| `03-pytest-passing.png` | Pytest Unit Tests Green | `pytest application/backend/tests -v` |
-| `04-sast-bandit-scan.png` | Bandit SAST Scan Output | `bandit -r application/backend/app -ll` |
-| `05-trivy-container-scan.png` | Trivy Container Security Scan | `trivy image --severity HIGH,CRITICAL ghcr.io/tanishq217/taskboard-backend:latest` |
-| `06-github-actions-pipeline.png` | Green CI/CD Pipeline on GitHub | GitHub repository -> **Actions** tab showing successful workflow |
-| `07-ghcr-packages.png` | GHCR Published Packages | GitHub profile/repo -> **Packages** showing published backend & frontend |
-| `08-terraform-apply.png` | Terraform Infrastructure Provisioned | `cd terraform && terraform apply -auto-approve` |
-| `09-k8s-pods-running.png` | Kubernetes Pods & Services in Running State | `kubectl get pods,svc,ingress,hpa -n taskboard` |
-| `10-helm-list-deploy.png` | Helm Release Status | `helm list -n taskboard && helm status taskboard -n taskboard` |
-| `11-metrics-endpoint.png` | Prometheus `/metrics` Output | `curl -s http://localhost:8000/metrics \| head -n 30` |
-| `12-troubleshooting-fixed.png` | Troubleshooting Diagnosis & Resolution | Output showing pod fixed from CrashLoopBackOff to 1/1 Running |
+| `01-docker-compose-startup.png` | Docker Compose Stack Startup | Build and initialization of PostgreSQL, FastAPI backend, and React frontend containers |
+| `02-docker-compose-running.png` | Multi-Container Runtime Status | `docker compose ps` showing all 3 containers healthy and listening on ports 8000, 3000, and 5432 |
+| `03-pytest-unit-tests.png` | Automated Test Suite | `pytest` output confirming 15/15 unit and integration tests passing in 0.49s |
+| `04-sast-bandit-scan.png` | Static Application Security Testing (SAST) | `bandit -r application/backend/app -ll` confirming 0 vulnerabilities across 240 lines of code |
+| `05-trivy-container-scan.png` | Container Vulnerability Scanning | Trivy scanning `taskboard-backend:latest` detecting 0 CRITICAL CVEs |
+| `06-terraform-init.png` | Terraform Initialization | `terraform init` successfully installing HashiCorp AWS provider v5.100.0 |
+| `07-terraform-plan.png` | Terraform Execution Plan | `terraform plan` output detailing 13 cloud resources to add (VPC, Subnets, SG, EC2, S3) |
+| `08-terraform-apply.png` | Infrastructure Provisioning | `terraform apply` confirming 13 resources created and displaying outputs (IPs, S3 bucket, SG) |
+| `09-helm-lint-verify.png` | Helm Chart Syntax Validation | `helm lint helm/taskboard` passing with 0 failures, along with HPA definition |
+| `10-helm-k8s-deployment.png` | Kubernetes & Helm Deployment | `helm upgrade --install` deploying release `taskboard`, and `kubectl get pods,svc,ingress,hpa` |
+| `11-troubleshooting-diagnosis.png` | Troubleshooting Runbook (Scenario 4) | Diagnostic analysis and remediation instructions for probe failures and routing |
+| `12-troubleshooting-resolution.png` | Troubleshooting Validation & Fix | Terminal output diagnosing Kubernetes deployment validation and verifying remediation |

@@ -334,22 +334,36 @@ The project includes four deliberately created scenarios documented in [`trouble
 
 ## 12. Verification Screenshots
 
-All project verification artifacts are organized in the dedicated [`screenshots/`](screenshots/) directory:
+All project verification artifacts are organized in the dedicated [`screenshots/`](screenshots/) directory and verified:
 
-| Screenshot | Description | Status |
-|---|---|---|
-| `screenshots/01-local-app-ui.png` | Responsive TaskBoard SaaS Dashboard UI | Ready for capture |
-| `screenshots/02-docker-compose-up.png` | Docker Compose 3-tier container stack running | Ready for capture |
-| `screenshots/03-pytest-passing.png` | Automated Pytest suite (15 test cases passing) | Ready for capture |
-| `screenshots/04-sast-bandit-scan.png` | Bandit static code security scan output | Ready for capture |
-| `screenshots/05-trivy-container-scan.png` | Trivy container vulnerability scan report | Ready for capture |
-| `screenshots/06-github-actions-pipeline.png` | Green GitHub Actions DevSecOps workflow | Ready for capture |
-| `screenshots/07-ghcr-packages.png` | Published packages in GitHub Container Registry | Ready for capture |
-| `screenshots/08-terraform-apply.png` | Terraform apply creating VPC, SG, EC2, and S3 | Ready for capture |
-| `screenshots/09-k8s-pods-running.png` | Kubernetes Pods, Services, HPA in Running state | Ready for capture |
-| `screenshots/10-helm-list-deploy.png` | Helm chart deployment and release status | Ready for capture |
-| `screenshots/11-metrics-endpoint.png` | Prometheus `/metrics` scraping output | Ready for capture |
-| `screenshots/12-troubleshooting-fixed.png` | Diagnosed and remediated Kubernetes challenge | Ready for capture |
+### 12.1 Local Application & Container Stack
+| 01 — Docker Compose Stack Startup | 02 — Multi-Container Runtime Status |
+|:---:|:---:|
+| ![Docker Compose Startup](screenshots/01-docker-compose-startup.png) | ![Docker Compose Status](screenshots/02-docker-compose-running.png) |
+
+### 12.2 Automated Testing & DevSecOps Scanning
+| 03 — Pytest Test Suite (15/15 Passed) | 04 — Bandit SAST Scan (0 Issues) |
+|:---:|:---:|
+| ![Pytest Test Suite](screenshots/03-pytest-unit-tests.png) | ![Bandit SAST Scan](screenshots/04-sast-bandit-scan.png) |
+
+### 12.3 Container Security & Infrastructure as Code (Terraform)
+| 05 — Trivy Container Vulnerability Scan | 06 — Terraform Init (AWS Provider) |
+|:---:|:---:|
+| ![Trivy Container Scan](screenshots/05-trivy-container-scan.png) | ![Terraform Init](screenshots/06-terraform-init.png) |
+
+| 07 — Terraform Plan (13 to Add) | 08 — Terraform Apply (Resources Provisioned) |
+|:---:|:---:|
+| ![Terraform Plan](screenshots/07-terraform-plan.png) | ![Terraform Apply](screenshots/08-terraform-apply.png) |
+
+### 12.4 Kubernetes, Helm & Troubleshooting Verification
+| 09 — Helm Lint & HPA Verification | 10 — Helm Upgrade & K8s Rollout |
+|:---:|:---:|
+| ![Helm Lint](screenshots/09-helm-lint-verify.png) | ![Helm Deployment](screenshots/10-helm-k8s-deployment.png) |
+
+| 11 — Troubleshooting Runbook Analysis | 12 — Troubleshooting Validation & Resolution |
+|:---:|:---:|
+| ![Troubleshooting Runbook](screenshots/11-troubleshooting-diagnosis.png) | ![Troubleshooting Resolution](screenshots/12-troubleshooting-resolution.png) |
+
 
 ---
 
