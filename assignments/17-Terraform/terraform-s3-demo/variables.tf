@@ -13,7 +13,7 @@ variable "bucket_name" {
 variable "localstack_endpoint" {
   type        = string
   description = "Endpoint URL for LocalStack local cloud emulation."
-  default     = "http://localhost:4566"
+  default     = "http://127.0.0.1:4566"
 }
 
 variable "environment" {
