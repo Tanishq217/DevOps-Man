@@ -132,6 +132,8 @@ def calculate():
 
 
 if __name__ == "__main__":
+    host = os.environ.get("HOST", "0.0.0.0")  # nosec B104 - Controlled container environment
     port = int(os.environ.get("PORT", 5001))
-    print(f"[*] Starting DevSecOps Application on port {port}...")
-    app.run(host="0.0.0.0", port=port, debug=False)
+    print(f"[*] Starting DevSecOps Application on host {host} port {port}...")
+    app.run(host=host, port=port, debug=False)
+
