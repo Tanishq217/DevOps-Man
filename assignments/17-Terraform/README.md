@@ -104,6 +104,19 @@ terraform destroy -auto-approve
 
 Detailed explanation of each command and verification screenshots are available in [terraform-s3-demo/README.md](file:///Users/tanishqsingh/Documents/Code%20Boost/DevOps-Man/assignments/17-Terraform/terraform-s3-demo/README.md).
 
+### Verification Screenshots
+
+| # | Stage / Command | Verification Image |
+|:---:|---|---|
+| **01** | LocalStack Container Running | ![LocalStack Running](screenshots/01-localstack-running.png) |
+| **02** | `terraform init` | ![Terraform Init](screenshots/02-terraform-init.png) |
+| **03** | `terraform fmt` & `validate` | ![Terraform Fmt Validate](screenshots/03-terraform-fmt-validate.png) |
+| **04** | `terraform plan` | ![Terraform Plan](screenshots/04-terraform-plan.png) |
+| **05** | `terraform apply` | ![Terraform Apply](screenshots/05-terraform-apply.png) |
+| **06** | `terraform show` & `output` | ![Terraform Show Output](screenshots/06-terraform-show-output.png) |
+| **07** | LocalStack S3 API Verification | ![S3 Bucket Verify](screenshots/07-s3-bucket-verify.png) |
+| **08** | `terraform destroy` | ![Terraform Destroy](screenshots/08-terraform-destroy.png) |
+
 ---
 
 ## Task 2: AWS Services Research Summary
