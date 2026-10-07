@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: startup-demo
+  labels:
+    app: probe-demo
+spec:
+  containers:
+    - name: app
+      image: busybox:1.36
+      command:
+        - sh
+        - -c
+        - "echo 'Starting slow application...'; sleep 25; touch /tmp/started; echo 'Application ready!'; sleep 600"
+      startupProbe:
+        exec:
+          command:
+            - test
+            - -f
+            - /tmp/started
+        periodSeconds: 5
+        failureThreshold: 10
+      livenessProbe:
+        exec:
+          command:
+            - test
+            - -f
+            - /tmp/started
+        periodSeconds: 5
