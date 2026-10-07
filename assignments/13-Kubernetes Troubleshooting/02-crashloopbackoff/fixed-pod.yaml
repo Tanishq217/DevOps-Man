@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: crashloop-demo
+  labels:
+    app: crashloop-demo
+spec:
+  containers:
+    - name: payment-worker
+      image: busybox:1.36
+      command: ["/bin/sh", "-c"]
+      args:
+        - |
+          echo "[STARTUP] Initializing payment processing daemon..."
+          echo "[INFO] Connected to primary database successfully."
+          while true; do
+            echo "[WORKER] Listening for transaction batches... System healthy."
+            sleep 15
+          done
+      resources:
+        requests:
+          cpu: 20m
+          memory: 32Mi

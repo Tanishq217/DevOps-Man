@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: config-issue-demo
+  labels:
+    app: config-issue-demo
+spec:
+  containers:
+    - name: api-server
+      image: nginx:1.27
+      env:
+        - name: DATABASE_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: app-database-config
+              key: DB_HOST

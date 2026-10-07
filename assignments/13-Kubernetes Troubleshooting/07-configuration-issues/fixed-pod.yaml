@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-database-config
+data:
+  DB_HOST: "postgres-cluster.database.svc.cluster.local"
+  DB_PORT: "5432"
+  DB_NAME: "production_db"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: config-issue-demo
+  labels:
+    app: config-issue-demo
+spec:
+  containers:
+    - name: api-server
+      image: nginx:1.27
+      ports:
+        - containerPort: 80
+      env:
+        - name: DATABASE_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: app-database-config
+              key: DB_HOST
+        - name: DATABASE_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: app-database-config
+              key: DB_PORT
+      resources:
+        requests:
+          cpu: 25m
+          memory: 32Mi
