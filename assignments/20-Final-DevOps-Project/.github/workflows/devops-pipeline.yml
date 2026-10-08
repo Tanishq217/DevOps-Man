@@ -230,6 +230,7 @@ jobs:
             --set frontend.image.pullPolicy=Never \
             --set backend.databaseUrl="sqlite:////tmp/taskboard.db" \
             --set postgres.enabled=false \
+            --set monitoring.serviceMonitor.enabled=false \
             --timeout 180s
 
       - name: Verify Pods, Services and Ingress

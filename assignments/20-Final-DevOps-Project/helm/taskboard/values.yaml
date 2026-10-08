@@ -59,6 +59,6 @@ hpa:
 
 monitoring:
   serviceMonitor:
-    enabled: true
+    enabled: false
     interval: 15s
     path: /metrics
