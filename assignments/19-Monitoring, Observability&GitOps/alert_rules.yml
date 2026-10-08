@@ -1,0 +1,29 @@
+groups:
+  - name: application-health-alerts
+    rules:
+      - alert: InstanceDown
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Instance {{ $labels.instance }} is down"
+          description: "Target {{ $labels.instance }} of job {{ $labels.job }} has been unresponsive for more than 1 minute."
+
+      - alert: HighCPUUsage
+        expr: process_cpu_seconds_total > 50
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High CPU consumption detected on {{ $labels.instance }}"
+          description: "CPU execution time has exceeded critical operational threshold."
+
+      - alert: HighMemoryUsage
+        expr: process_resident_memory_bytes > 500000000
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High memory utilization on {{ $labels.instance }}"
+          description: "Resident memory has surpassed 500MB."

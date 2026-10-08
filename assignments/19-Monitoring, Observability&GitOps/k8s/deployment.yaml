@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: session19-demo
+  namespace: session19-monitoring
+  labels:
+    app: session19-demo
+    tier: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: session19-demo
+  template:
+    metadata:
+      labels:
+        app: session19-demo
+        tier: backend
+    spec:
+      containers:
+        - name: app
+          image: busybox:1.36
+          command:
+            - /bin/sh
+            - -c
+            - |
+              echo "Starting Session 19 Monitoring & Observability Demo Service..."
+              count=0
+              while true; do
+                count=$((count+1))
+                timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+                echo "$timestamp [INFO] Request received: GET /health HTTP/1.1 200 OK duration=12ms req_id=$count"
+                echo "$timestamp [INFO] Application health check OK: db_pool=active memory=24Mi cpu_util=1.4%"
+                if [ $((count % 5)) -eq 0 ]; then
+                  echo "$timestamp [METRIC] http_requests_total{status=\"200\",handler=\"health\"} $count"
+                fi
+                sleep 5
+              done
+          resources:
+            requests:
+              cpu: 50m
+              memory: 32Mi
+            limits:
+              cpu: 100m
+              memory: 64Mi

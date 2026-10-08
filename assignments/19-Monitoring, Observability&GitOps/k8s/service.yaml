@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: session19-demo-service
+  namespace: session19-monitoring
+  labels:
+    app: session19-demo
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 8080
+      name: http
+  selector:
+    app: session19-demo

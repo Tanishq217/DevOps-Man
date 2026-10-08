@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: session19-monitoring-gitops
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Tanishq217/DevOps-Man.git
+    targetRevision: main
+    path: assignments/19-Monitoring, Observability&GitOps/k8s
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: session19-monitoring
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

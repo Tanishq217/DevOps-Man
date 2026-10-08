@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: session19-monitoring
+  labels:
+    app.kubernetes.io/name: session19-monitoring
+    environment: demo
