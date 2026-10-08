@@ -364,6 +364,14 @@ All project verification artifacts are organized in the dedicated [`screenshots/
 |:---:|:---:|
 | ![Troubleshooting Runbook](screenshots/11-troubleshooting-diagnosis.png) | ![Troubleshooting Resolution](screenshots/12-troubleshooting-resolution.png) |
 
+### 12.5 Production UI, CI/CD Pipeline & Observability Telemetry
+| 13 — TaskBoard SaaS Web Dashboard UI | 14 — GitHub Actions Green Pipeline (Run #6) |
+|:---:|:---:|
+| ![TaskBoard Dashboard](screenshots/13-browser-app-ui.png) | ![GitHub Actions Green Pipeline](screenshots/14-github-actions-green-pipeline.png) |
+
+| 15 — GitHub Container Registry (GHCR) Packages | 16 — Live Prometheus Telemetry Stream (/metrics) |
+|:---:|:---:|
+| ![Published GHCR Packages](screenshots/15-ghcr-published-packages.png) | ![Prometheus Telemetry](screenshots/16-prometheus-metrics-endpoint.png) |
 
 ---
 

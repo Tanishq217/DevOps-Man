@@ -31,7 +31,7 @@ The capstone project is evaluated out of **100 points**. Every module maps direc
 * **REST Endpoints:** Full CRUD API implemented under `/api/tasks` (`GET`, `POST`, `PUT`, `DELETE`) with stats aggregation under `/api/stats`.
 * **Database & Migrations:** PostgreSQL 16 database with Alembic migration (`alembic/versions/0001_initial_tasks.py`).
 * **React + Vite Frontend:** Modern dark-themed dashboard with Kanban KPI metrics, task tables, sprint filters, and modal controls.
-* **Evidence:** `01-docker-compose-startup.png`, `02-docker-compose-running.png`.
+* **Evidence:** `01-docker-compose-startup.png`, `02-docker-compose-running.png`, `13-browser-app-ui.png`.
 
 ### M2 — Testing: Pytest + Code Quality (10 / 10 pts)
 * **Automated Test Suite:** 15 unit and integration tests covering CRUD operations, health endpoints, metrics, schema validation, and database operations.
@@ -50,7 +50,7 @@ The capstone project is evaluated out of **100 points**. Every module maps direc
 * **Backend Container:** Hardened Python 3.12-slim runtime, non-root user (`appuser` UID 10001), healthcheck curl.
 * **Frontend Container:** Multi-stage Dockerfile (Node.js 22 alpine build stage + unprivileged Nginx runtime).
 * **Multi-Service Composition:** `docker-compose.yml` orchestrating frontend (`:3000`), backend (`:8000`), and PostgreSQL (`:5432`) with service dependencies and health checks.
-* **Evidence:** `01-docker-compose-startup.png`, `02-docker-compose-running.png`.
+* **Evidence:** `01-docker-compose-startup.png`, `02-docker-compose-running.png`, `13-browser-app-ui.png`.
 
 ### M5 — CI/CD: GitHub Actions Pipeline (15 / 15 pts)
 * **Workflow Automation:** Complete 4-stage pipeline defined in `.github/workflows/devops-pipeline.yml`.
@@ -60,7 +60,7 @@ The capstone project is evaluated out of **100 points**. Every module maps direc
   3. `🐳 Docker Build, Trivy Scan & Push`: Multi-arch container builds, CVE scans, and publishing to GHCR.
   4. `☸️ Deploy to Kubernetes (Kind)`: Kind cluster creation, image preloading, and Helm release deployment.
 * **Package Publishing:** Published to GitHub Container Registry (`ghcr.io/tanishq217/taskboard-backend` and `taskboard-frontend`) with SHA-based tagging.
-* **Evidence:** Verified Green Pipeline Run on GitHub Actions (`#6`).
+* **Evidence:** `14-github-actions-green-pipeline.png` (Run #6), `15-ghcr-published-packages.png`.
 
 ### M6 — DevSecOps: Security Vulnerability Gates (5 / 5 pts)
 * **Static Application Security Testing (SAST):** Bandit scan (`bandit -r app -ll`) with 0 vulnerabilities detected.
@@ -94,7 +94,7 @@ The capstone project is evaluated out of **100 points**. Every module maps direc
 * **Metrics Exporter:** Prometheus FastAPI Instrumentator exporting live metrics at `/metrics`.
 * **Telemetry Collected:** HTTP request counts, response latency histograms, error rates, and Python process memory/CPU.
 * **Dashboards:** Configured Prometheus ServiceMonitor and Grafana TaskBoard Dashboard JSON (`monitoring/grafana-dashboard.json`).
-* **Evidence:** Local `/metrics` verified, ServiceMonitor configured in Helm.
+* **Evidence:** `16-prometheus-metrics-endpoint.png`, ServiceMonitor configured in Helm.
 
 ### M10 — Troubleshooting Runbooks & Documentation (5 / 5 pts)
 * **Comprehensive Failure Scenarios:**
