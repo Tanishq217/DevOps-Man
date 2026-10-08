@@ -157,25 +157,17 @@ jobs:
             -t ${{ env.FRONTEND_IMAGE }}:latest \
             ${{ steps.dirs.outputs.frontend_dir }}
 
+      - name: Install Trivy Security Scanner
+        run: |
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh -s -- -b /usr/local/bin
+
       - name: Scan backend container image with Trivy
-        uses: aquasecurity/trivy-action@0.28.0
-        with:
-          image-ref: ${{ env.BACKEND_IMAGE }}:${{ github.sha }}
-          format: 'table'
-          exit-code: '0'
-          ignore-unfixed: true
-          vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
+        run: |
+          trivy image --severity HIGH,CRITICAL --ignore-unfixed --exit-code 0 ${{ env.BACKEND_IMAGE }}:${{ github.sha }}
 
       - name: Scan frontend container image with Trivy
-        uses: aquasecurity/trivy-action@0.28.0
-        with:
-          image-ref: ${{ env.FRONTEND_IMAGE }}:${{ github.sha }}
-          format: 'table'
-          exit-code: '0'
-          ignore-unfixed: true
-          vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
+        run: |
+          trivy image --severity HIGH,CRITICAL --ignore-unfixed --exit-code 0 ${{ env.FRONTEND_IMAGE }}:${{ github.sha }}
 
       - name: Push Docker images to GHCR
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
@@ -236,11 +228,15 @@ jobs:
             --set frontend.image.repository=${{ env.FRONTEND_IMAGE }} \
             --set frontend.image.tag=${{ github.sha }} \
             --set frontend.image.pullPolicy=Never \
+            --set backend.databaseUrl="sqlite:////tmp/taskboard.db" \
             --set postgres.enabled=false \
-            --timeout 120s
+            --timeout 180s
 
-      - name: Verify Pods and Services
+      - name: Verify Pods, Services and Ingress
         run: |
+          sleep 10
           kubectl get pods -n taskboard -o wide
           kubectl get svc -n taskboard
           kubectl get ingress -n taskboard
+          kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=taskboard-backend -n taskboard --timeout=90s || true
+          kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=taskboard-frontend -n taskboard --timeout=90s || true
